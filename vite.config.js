@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     glsl(),                       // shader imports
     viteStaticCopy({              // move arbitrary files to dist
-      targets: [{ src: 'textures/*', dest: '' } , {src:'public/**/*'  , dest:''}]
+      targets: [{ src: 'textures/*', dest: 'dist/textures' } , {src:'public/**/*'  , dest:'dist/public'}]
     })
   ],
   build: {
