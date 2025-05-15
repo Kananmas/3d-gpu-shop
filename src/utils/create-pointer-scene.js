@@ -17,7 +17,7 @@ export const createPointerScene = function (scene = new Scene , anims = []) {
     }
 
     for (let i = 0; i < points.length; i++) {
-        gltfLoader.load("../pointer.glb", (data) => {
+        gltfLoader.load("../public/pointer.glb", (data) => {
             let objectScene = data.scene;
 
             let median = Math.ceil(points.length/2)

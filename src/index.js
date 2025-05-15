@@ -25,7 +25,7 @@ export const viewModes = {
     DEFAULT: 'default',
     PREVIEW: 'preview',
     PRODUCTVIEW: 'product-view',
-    RECEPTION:'reception',
+    RECEPTION: 'reception',
 }
 
 export const shelfNames = {
@@ -57,7 +57,7 @@ const animateFunctions = [];
 const shelf1 = ['Cube009_1', 'Cube011_1', 'Cube011', 'pointer1'];
 const shelf2 = ['Cube007_1', 'Cube010_1', 'Cube010', 'pointer0'];
 const shelf3 = ['Cube001_1', 'Cube001_2', 'pointer2'];
-const reception = ['Cube006_1', 'Cube008'   , 'pointer3'];
+const reception = ['Cube006_1', 'Cube008', 'pointer3'];
 
 const raycaster = new THREE.Raycaster();
 const scene = new THREE.Scene();
@@ -94,12 +94,13 @@ const travelTo = () => {
 
 
 const loader = new GLTFLoader();
-loader.load(`shop-env.glb`, function (data) {
+loader.load(`/public/shop-env.glb`, function (data) {
     scene.add(data.scene)
     renderer.render(scene, camera)
     productMeshes = {
         [shelfNames.GPU_CPU_SHELF]: loadGpuCpuBoxes(scene),
         [shelfNames.MB_POWER_SHELF]: loadMbPowerBoxes(scene),
+        [shelfNames.RAM_CASE_SHELF]:[]
     }
     createPointerScene(scene, animateFunctions)
 }, undefined, function (error) {
@@ -154,7 +155,6 @@ const mouseRaycaster = (e) => {
 window.addEventListener('click', (e) => {
     if (viewMode == ProductView || currentHitObject == null) return;
     const targetName = currentHitObject.object.name;
-    console.log(targetName);
     if (viewMode != viewModes.PREVIEW && viewMode != viewModes.RECEPTION) {
 
         if (reception.includes(targetName)) {
@@ -196,10 +196,10 @@ initialPosition = new THREE.Vector3(3.4, 1.2, -0.8);
 
 window.addEventListener('mousemove', mouseRaycaster)
 window.addEventListener(Back, () => {
-   resetPosition();
+    resetPosition();
 })
 
-function resetPosition () {
+function resetPosition() {
     travelDestination.copy(initialPosition);
     travelRotation = degToRad(90);
     viewMode = viewModes.DEFAULT
@@ -317,7 +317,7 @@ function goToReception() {
 
 
 
-receptionViewBackBtn.addEventListener('click' , () => {
+receptionViewBackBtn.addEventListener('click', () => {
     resetPosition();
     toggleReceptionView()
     dispatchEvent(new Event("ShowAll"))
