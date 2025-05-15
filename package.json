@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx vite build",
+    "page":"gh-pages -d dist",
+    "deploy":"npm run build  npm run page"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "vite-plugin-static-copy": "^3.0.0"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "sweetalert2": "^11.15.3",
     "three": "^0.171.0"
   }
